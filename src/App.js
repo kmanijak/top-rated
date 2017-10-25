@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sortBy from 'lodash/sortBy';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -7,20 +8,18 @@ import {
     fetchMetacritic,
     fetchRottenTomatoes,
 } from './fetch';
+import combine from './data/combine';
 
 class App extends Component {
     componentDidMount() {
-        fetchFilmweb()
-            .then(movies => console.log('FILMWEB', movies));
-
-        fetchImdb()
-            .then(movies => console.log('IMDB', movies));
-
-        fetchMetacritic()
-            .then(movies => console.log('METACRITIC', movies));
-
-        fetchRottenTomatoes()
-            .then(movies => console.log('ROTTEN TOMATOES', movies));
+        Promise.all([
+            fetchFilmweb(),
+            fetchImdb(),
+            fetchMetacritic(),
+            fetchRottenTomatoes(),
+        ])
+            .then(([ filmweb, imdb, metacritic, rottenTomatoes ]) => combine({ filmweb, imdb, metacritic, rottenTomatoes }))
+            .then(movies => console.log(sortBy(movies, ({ averageRating }) => averageRating)));
     }
 
   render() {

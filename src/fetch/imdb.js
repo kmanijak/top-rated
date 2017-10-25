@@ -6,7 +6,7 @@ const imdb = 'http://www.imdb.com/chart/top';
 const imdbParser = (rawPage) => {
     const parseMovie = (row) => {
         const rankTitleYearElement = row.getElementsByClassName('titleColumn')[0];
-        const titleYearElement = row.getElementsByTagName('a')[0];
+        const titleYearElement = rankTitleYearElement.getElementsByTagName('a')[0];
         const rank = trim(rankTitleYearElement.textContent.split('.')[0]);
         const rating = row
             .getElementsByClassName('ratingColumn')[0]
