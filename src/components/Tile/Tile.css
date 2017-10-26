@@ -1,0 +1,42 @@
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.tile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: 1s fadein;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: var(--red);
+    transition: 0.3s all linear;
+    box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+}
+
+.tile--seen {
+    background-color: var(--green);
+}
+
+.tile__right {
+    display: flex;
+    align-items: center;
+}
+
+.tile__rank {
+    min-width: 60px;
+    text-align: center;
+}
+
+.tile__rating {
+    width: 80px;
+    font-size: 30px;
+}
+
+.tile__title {
+    font-size: 26px;
+    flex-grow: 1;
+}

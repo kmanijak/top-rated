@@ -12,7 +12,7 @@ const imdbParser = (rawPage) => {
             .getElementsByClassName('ratingColumn')[0]
             .getElementsByTagName('strong')[0]
             .innerHTML;
-        const link = titleYearElement.getAttribute('href');
+        const link = 'http://imdb.com' + titleYearElement.getAttribute('href');
         const title = titleYearElement.innerHTML;
         const year = rankTitleYearElement
             .getElementsByClassName('secondaryInfo')[0]

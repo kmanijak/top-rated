@@ -1,0 +1,17 @@
+@keyframes color-change {
+    0% {
+        color: #fa0;
+    }
+    50% {
+        color: #0c9;
+    }
+    100% {
+        color: #fa0;
+    }
+}
+
+.logo {
+    font-size: 32px;
+    font-family: 'Megrim', Tahoma;
+    animation: color-change 10s linear infinite both;
+}

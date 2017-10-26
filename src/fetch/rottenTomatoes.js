@@ -9,7 +9,7 @@ const rottenTomatoesParser = (rawPage) => {
         const rating = row.getElementsByClassName('tMeterScore')[0].innerHTML.replace('&nbsp;', '').replace('%', '');
         const titleYearElement = row.getElementsByClassName('articleLink')[0];
         const titleYear = titleYearElement.innerHTML;
-        const link = 'rottentomatoes.com' + titleYearElement.getAttribute('href');
+        const link = 'https://rottentomatoes.com' + titleYearElement.getAttribute('href');
         const title = trim(titleYear.split('(')[0]);
         const year = trim(titleYear.match(/(?:\()(\d+)(?:\))$/)[1]);
 

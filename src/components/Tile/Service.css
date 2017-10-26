@@ -1,0 +1,20 @@
+.service {
+    width: 80px;
+    text-align: center;
+    border-left: 1px solid var(--white);
+    vertical-align: baseline;
+    transition: 0.2s transform linear;
+}
+
+.service:hover {
+    transform: scale(1.1);
+}
+
+.service__name {
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.service__rating {
+    color: var(--brown);
+}

@@ -12,7 +12,7 @@ const metacriticParser = (rawPage) => {
         const titleLinkElement = row
             .getElementsByClassName('title')[0]
             .getElementsByTagName('a')[0];
-        const link = 'metacritic.com' + titleLinkElement.getAttribute('href');
+        const link = 'http://metacritic.com' + titleLinkElement.getAttribute('href');
         const title = titleLinkElement.innerHTML;
         const year = row
             .getElementsByClassName('date_wrapper')[0]

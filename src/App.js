@@ -52,10 +52,12 @@ class App extends Component {
                     ) : ([
                         <Logo key="logo" />,
                         movies.map((props, index) => (
-                            <Tile key={index} {...props} rank={index + 1} />
+                            <Tile key={index} {...props} rank={index + 1} seen={index % 4 !== 0} />
                         ))
                     ])
                 }
+                <link href="https://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" />
             </div>
         );
   }

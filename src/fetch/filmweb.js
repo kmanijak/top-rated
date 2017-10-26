@@ -7,7 +7,7 @@ const filmwebPraser = (rawPage) => {
         const titleLinkElement = row.getElementsByClassName('film__link')[0];
         const rank = row.getElementsByClassName('ranking__position')[0].innerHTML;
         const rating = row.getElementsByClassName('rate__value')[0].innerHTML;
-        const link = 'filmweb.pl' + titleLinkElement.getAttribute('href');
+        const link = 'http://filmweb.pl' + titleLinkElement.getAttribute('href');
         const titlePL = titleLinkElement.innerHTML;
         const originalTitleElement = row.getElementsByClassName('film__original')[0];
         const title = originalTitleElement ? originalTitleElement.innerHTML : titlePL;
