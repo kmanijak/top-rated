@@ -28,7 +28,7 @@ const addMissingKeys = (key) => {
 const updateBase = (currentBase, newList, key) => (
     newList.reduce((list, { title, year, ...others }) => {
         const index = list.findIndex(movie => (
-            movie.year === year && movie.title === title
+            movie.title === title
         ));
 
         if (index > -1) {
@@ -45,16 +45,15 @@ const updateBase = (currentBase, newList, key) => (
     }, currentBase)
 );
 
-const getRating = (service) => service ? service.rating : '0';
+const getRating = (service) => service ? service.rating : '';
 
 const calculateScore = (movies) => (
     movies.map(movie => {
-
         const { filmweb, imdb, metacritic, rottenTomatoes } = movie;
-        const fw = getRating(filmweb).replace(',', '.');
-        const id = getRating(imdb);
-        const mc = getRating(metacritic) / TOP_SCORE.ROTTEN_TOMATOES;
-        const rt = getRating(rottenTomatoes) / TOP_SCORE.ROTTEN_TOMATOES;
+        const fw = getRating(filmweb).replace(',', '.') || '5';
+        const id = getRating(imdb) || '5';
+        const mc = getRating(metacritic) / TOP_SCORE.ROTTEN_TOMATOES || '5';
+        const rt = getRating(rottenTomatoes) / TOP_SCORE.ROTTEN_TOMATOES || '5';
 
         const averageRating = ( Number(fw) + Number(id) + Number(mc) + Number(rt) ) / 4;
 

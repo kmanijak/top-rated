@@ -8,10 +8,10 @@ const rottenTomatoesParser = (rawPage) => {
         const rank = row.getElementsByClassName('bold')[0].innerHTML.replace('.', '');
         const rating = row.getElementsByClassName('tMeterScore')[0].innerHTML.replace('&nbsp;', '').replace('%', '');
         const titleYearElement = row.getElementsByClassName('articleLink')[0];
-        const titleYear = titleYearElement.innerHTML.split('(');
+        const titleYear = titleYearElement.innerHTML;
         const link = 'rottentomatoes.com' + titleYearElement.getAttribute('href');
-        const title = trim(titleYear[0]);
-        const year = trim(titleYear[1].replace(')', ''));
+        const title = trim(titleYear.split('(')[0]);
+        const year = trim(titleYear.match(/(?:\()(\d+)(?:\))$/)[1]);
 
         return { rank, rating, link, title, year };
     };

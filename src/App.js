@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import sortBy from 'lodash/sortBy';
-import logo from './logo.svg';
+import cx from 'classnames';
 import './App.css';
 import {
     fetchFilmweb,
@@ -10,7 +10,17 @@ import {
 } from './fetch';
 import combine from './data/combine';
 
+import Logo from './components/Logo';
+import Tile from './components/Tile';
+import Loader from './components/Loader';
+
 class App extends Component {
+    state = {
+        pending: true,
+        transition: false,
+        movies: [],
+    };
+
     componentDidMount() {
         Promise.all([
             fetchFilmweb(),
@@ -19,21 +29,35 @@ class App extends Component {
             fetchRottenTomatoes(),
         ])
             .then(([ filmweb, imdb, metacritic, rottenTomatoes ]) => combine({ filmweb, imdb, metacritic, rottenTomatoes }))
-            .then(movies => console.log(sortBy(movies, ({ averageRating }) => averageRating)));
+            .then(movies => {
+                this.setState({
+                    movies: (sortBy(movies, ({ averageRating }) => -averageRating)),
+                    pending: false,
+                    transition: true,
+                });
+                this.removeTransition();
+            })
     }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    removeTransition = () => {
+        setTimeout(() => this.setState({ transition: false }), 1000);
+    };
+
+    render() {
+        const { pending, transition, movies } = this.state;
+        return (
+            <div className={cx('app', { 'app--pending': pending, 'app--transition': transition })}>
+                {pending || transition ? (
+                        <Loader />
+                    ) : ([
+                        <Logo key="logo" />,
+                        movies.map((props, index) => (
+                            <Tile key={index} {...props} rank={index + 1} />
+                        ))
+                    ])
+                }
+            </div>
+        );
   }
 }
 
