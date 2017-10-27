@@ -3,11 +3,6 @@
     text-align: center;
     border-left: 1px solid var(--white);
     vertical-align: baseline;
-    transition: 0.2s transform linear;
-}
-
-.service:hover {
-    transform: scale(1.1);
 }
 
 .service__name {

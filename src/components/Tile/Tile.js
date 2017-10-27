@@ -3,8 +3,8 @@ import cx from 'classnames';
 import Service from './Service';
 import './Tile.css';
 
-const Tile = ({ seen, rank, title, year, averageRating, filmweb, imdb, metacritic, rottenTomatoes }) => (
-    <div key={rank} className={cx('tile', { 'tile--seen': seen })}>
+const Tile = ({ seen, rank, title, year, averageRating, filmweb, imdb, metacritic, rottenTomatoes, onClick }) => (
+    <div key={rank} className={cx('tile', { 'tile--seen': seen })} onClick={onClick}>
         <h1 className="tile__rank">{rank}. </h1>
         <h3 className="tile__title">{title} ({year})</h3>
         <div className="tile__right">
