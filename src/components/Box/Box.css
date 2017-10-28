@@ -1,0 +1,17 @@
+.box {
+    background-color: var(--pink);
+    border-radius: 2px;
+    padding: 16px;
+}
+
+.box__title {
+    font-size: 16px;
+    color: var(--brown);
+    border-bottom: 1px solid var(--brown);
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.box__content {
+    color: var(--white);
+}

@@ -1,3 +1,5 @@
+import { compare } from './utils';
+
 const SERVICES = {
     FILMWEB: 'filmweb',
     IMDB: 'imdb',
@@ -27,9 +29,7 @@ const addMissingKeys = (key) => {
 
 const updateBase = (currentBase, newList, key) => (
     newList.reduce((list, { title, year, ...others }) => {
-        const index = list.findIndex(movie => (
-            movie.title === title
-        ));
+        const index = list.findIndex(movie => compare(movie.title, title));
 
         if (index > -1) {
             list[index][key] = others;
