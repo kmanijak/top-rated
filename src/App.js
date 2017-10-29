@@ -80,8 +80,6 @@ class App extends Component {
         const metacriticSeen = countMovies(filteredSeen, 'metacritic');
         const rottenTomatoesTotal = countMovies(movies, 'rottenTomatoes');
         const rottenTomatoesSeen = countMovies(filteredSeen, 'rottenTomatoes');
-        const total = filmwebTotal + imdbTotal + metacriticTotal + rottenTomatoesTotal;
-        const seen = filmwebSeen + imdbSeen + metacriticSeen + rottenTomatoesSeen;
 
         return (
             <div className={cx('app', { 'app--pending': pending, 'app--transition': transition })}>
@@ -89,13 +87,40 @@ class App extends Component {
                         <Loader />
                     ) : ([
                         <Logo key="logo" />,
-                        <Box key="stats" title="Stats">
-                            <Stats title="Total" seen={seen} all={total} />
-                            <Stats title="Filmweb" seen={filmwebSeen} all={filmwebTotal} />
-                            <Stats title="IMDB" seen={imdbSeen} all={imdbTotal} />
-                            <Stats title="Metacritic" seen={metacriticSeen} all={metacriticTotal} />
-                            <Stats title="Rotten Tomatoes" seen={rottenTomatoesSeen} all={rottenTomatoesTotal} />
-                        </Box>,
+                        <div key="boxes" className="app__boxes">
+                            <Box className="app__boxes-stats" title="Stats">
+                                <Stats title="Total" seen={filteredSeen.length} all={filteredMovies.length} />
+                                <Stats title="Filmweb" seen={filmwebSeen} all={filmwebTotal} />
+                                <Stats title="IMDB" seen={imdbSeen} all={imdbTotal} />
+                                <Stats title="Metacritic" seen={metacriticSeen} all={metacriticTotal} />
+                                <Stats title="Rotten Tomatoes" seen={rottenTomatoesSeen} all={rottenTomatoesTotal} />
+                            </Box>
+                            <Box className="app__boxes-filters" title="Filters">
+                                <span>
+                                    <h1>SEEN</h1>
+                                    <p>Only seen</p>
+                                    <p>Only unseen</p>
+                                </span>
+                                <span>
+                                    <h1>SERVICE</h1>
+                                    <p>Filmweb</p>
+                                    <p>IMDB</p>
+                                    <p>Metacritic</p>
+                                    <p>Rotten Tomatoes</p>
+                                </span>
+                                <span>
+                                    <h1>HOW MANY</h1>
+                                    <p>Filmweb: 500</p>
+                                    <p>IMDB: 250</p>
+                                    <p>Metacritic: 100</p>
+                                    <p>Rotten Tomatoes: 100</p>
+                                </span>
+                            </Box>
+                            <Box title="Actions">
+                                <button>export data</button>
+                                <button>import data</button>
+                            </Box>
+                        </div>,
                         markedMovies.map((props, index) => {
                             const { title } = props;
                             const seen = seenMovies.findIndex(movie => compare(movie, title)) > -1;

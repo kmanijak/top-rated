@@ -2,6 +2,7 @@
     background-color: var(--pink);
     border-radius: 2px;
     padding: 16px;
+    margin-right: 20px;
 }
 
 .box__title {

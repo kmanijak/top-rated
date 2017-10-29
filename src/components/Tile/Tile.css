@@ -4,6 +4,7 @@
 }
 
 .tile {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,19 +16,43 @@
     transition: 0.3s all ease-out;
     box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     max-width: 1200px;
+    position: relative;
 }
 
-.tile:hover {
-    transform: scale(1.02);
+.tile__left,
+.tile__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile__left {
+    flex-grow: 1;
+}
+
+.tile__message {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    background-color: var(--pink);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    transition: 0.3s all ease-out;
+    z-index: -1;
+    width: calc(100% - 40px);
+    text-align: center;
+    font-size: 10px;
+    padding: 2px;
+    opacity: 0;
+}
+
+.tile__message--visible {
+    transform: translateY(100%);
+    opacity: 1;
 }
 
 .tile--seen {
     background: linear-gradient(45deg, var(--green), #68a5b1);
-}
-
-.tile__right {
-    display: flex;
-    align-items: center;
 }
 
 .tile__rank {
@@ -36,7 +61,7 @@
 }
 
 .tile__rating {
-    width: 80px;
+    min-width: 80px;
     font-size: 30px;
 }
 

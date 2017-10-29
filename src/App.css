@@ -64,6 +64,19 @@ body {
     padding: 20px 40px;
 }
 
+.app__boxes {
+    display: flex;
+
+}
+
+.app__boxes-stats {
+    width: 260px;
+}
+
+.app__boxes-filters .box__content {
+    display: flex;
+}
+
 .app--pending,
 .app--transition {
     height: 100vh;
